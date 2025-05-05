@@ -74,9 +74,8 @@ header a{
 	color:var(--white-color);
 	text-decoration: none;
 }
-header.logo{
-	justify-self: start;
-	max-width:200px;
+.logo{
+	max-width:300px;
 }
 .logo img{
 	max-width:350px;
@@ -171,6 +170,7 @@ section:nth-child(odd){
 .wrapperHead{
 	text-transform: capitalize;
 	color:var(--headColor2);
+	font-size: 3rem;
 }
 .wrapperWidth{
 	max-width: 1750px;
@@ -216,9 +216,17 @@ section:nth-child(odd){
 }
 .menuItem{
 	max-width:500px;
+	padding:15px;
+	cursor:pointer;
+	border-radius: 15px;
+	transition:0.2s ease;	
+}
+.menuItem:hover{
+	background-color:#404040;
+	transition:0.2s ease;
 }
 .menuItem h3{
-	font-size:1rem;
+	font-size:2rem;
 	color:#fff;
 	text-align: center;
 }
@@ -226,8 +234,14 @@ section:nth-child(odd){
 	color:#fff;
 }
 .innerMenuWrapper{
-		border-top:1px solid #fff;
+	display: none;
+}
+.menuPopup.active{	
+	border-top:1px solid #fff;
 	padding:60px 0;
+}
+.menuPopup.active .innerMenuWrapper{
+	display:flex;
 }
 .innerMenuWrapper ul{
 	color:#fff;
@@ -288,4 +302,37 @@ footer{
 }
 #bottomFootLeft p{
 	margin-bottom:0;
+}
+#mobileMenu{
+	display:none!important;
+}
+#hamburgerWrapper{
+	display:none!important;
+}
+@media screen and (max-width:950px){
+	#hamburgerWrapperMobile{
+		display:block!important;
+	}
+	#mainDesktopMenu .navbar {
+		display:none!important;
+	}
+	#hamburgerWrapperMobile i{
+		font-size: 25px;
+		color:#fff;
+	}
+	.hamburgerMenu{
+		font-size:25px;
+		color:#fff;
+	}
+	#mobileMenu{
+		display:none!important;
+	}
+	#mobileMenu.show{
+		display: flex !important;
+		position: absolute;
+		z-index: 9;
+		right:0;
+		background-color:#AABF5E;
+		height:100vh	
+	}
 }

@@ -11,6 +11,38 @@
         <script src="https://kit.fontawesome.com/a4689790f6.js" crossorigin="anonymous"></script>
     </head>
     <body>
+        <div id="mobileMenu" class="d-flex flex-column">
+            <div id="closeMobileMenu" class="d-flex justify-content-end align-items-center">
+                <div id="hamburgerMenuMobile">
+                    <i class="fa-solid fa-xmark"></i>
+                </div>
+            </div>
+            <div class="mobileMenuHeader d-flex justify-content-between align-items-center">
+                <div class="logo">
+                    <img src="images/header-logo.png" alt="Logo">
+                </div>
+            </div>
+            <nav class="navbar w-100 d-flex justify-content-end">
+                <ul id="navlist" class="d-flex flex-column align-items-center">
+                    <li><a href="#"><i class="fa-regular fa-house" aria-hidden="true"></i> Home</a></li>
+                    <li><a href="#">Our Food</a></li>
+                    <li><a href="#">Catering</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Login</a></li>
+                </ul>
+            </nav>
+            <div class="socialMedia d-flex align-items-center">
+                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+            </div>
+            <address class="d-flex align-items-center">
+                <i class="fa-solid fa-phone"></i><a href="#"> 123-456-7890</a>
+                <i class="marginLeft fa-solid fa-location-dot"></i><a href="#"> 1234 Street Name, City, State, 12345</a>
+            </address>
+        </div>
         <div id="topHeader">
             <div class="wrapperWidth d-flex justify-content-between align-items-center">                
                 <div class="headerLeft d-flex">
@@ -31,7 +63,7 @@
             </div>
         </div>
         <header class="d-flex align-items-center justify-content-between box-sizing">
-            <div class="wrapperWidth d-flex justify-content-between align-items-center w-100">
+            <div id="mainDesktopMenu" class="wrapperWidth d-flex justify-content-between align-items-center w-100">
                 <div class="logo w-100">
                     <img src="images/header-logo.png" alt="Logo">
                 </div>
@@ -45,5 +77,8 @@
                         <li><a href="#">Login</a></li>
                     </ul>
                 </nav>
+                <div id="hamburgerWrapperMobile">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
             </div>
         </header>
