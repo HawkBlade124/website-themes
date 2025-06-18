@@ -1,28 +1,55 @@
 $(function(){
-    const myCarouselElement = document.querySelector('#testimonialWrapper')
+    // Carousel initialization with existence check
+    const myCarouselElement = document.querySelector('#testimonialWrapper');
+    if (myCarouselElement) {
+        const carousel = new bootstrap.Carousel(myCarouselElement, {
+            interval: 700,
+            touch: false
+        });
+    }
 
-    const carousel = new bootstrap.Carousel(myCarouselElement, {
-    interval: 4000,
-    touch: false
-    })
-    //functionality for the menu popup section
-    $('.menuItem').click(function() {
-        // Get the target popup ID from the data-target attribute
-        var targetPopup = '#' + $(this).data('target');
-        
-        // Hide all popups first
-        $('.menuPopup').removeClass('active');
-        
-        // Toggle the active class on the targeted popup
-        $(targetPopup).toggleClass('active');
+    // Menu item popup toggle
+    $('.menuItem').on('click', function() {
+        var $this = $(this);
+        var targetId = $this.data('target');
+        var isMobile = $this.closest('#menuWrapperMobile').length > 0;
+
+        // Determine the scope of menu items and popups based on device
+        var $allMenuItems = isMobile
+            ? $('#menuWrapperMobile .menuItem')
+            : $('#menuWrapper .menuItem');
+        var $allPopups = isMobile
+            ? $('#menuWrapperMobile .innerMenuWrapper')
+            : $('#menuWrapper .menuPopup');
+        var $popup = isMobile
+            ? $this.siblings('.innerMenuWrapper')
+            : $('#' + targetId);
+
+        // Remove active class from all menu items and popups
+        $allMenuItems.removeClass('active');
+        $allPopups.removeClass('active');
+
+        // Add active class to the clicked menu item and its corresponding popup
+        $this.addClass('active');
+        $popup.addClass('active');
     });
 
-    // mobile menu functionality
-    $('.hamburgerMenu .fa-times').click(function(){
-        $('#mobileMenu').removeClass('show')
-    })
-    $('.hamburgerMenu .fa-bars').click(function(){
-		$('#mobileMenu').toggleClass('show')
-	})
-
-})
+    // Mobile menu functionality
+    $('.closeMobileMenu').click(function(){
+        $('#mobileMenu').removeClass('show');
+    });
+    $('.openMobileMenu').click(function(){
+        $('#mobileMenu').toggleClass('show');
+    });
+    $('#overlay').click(function(){
+        $('#mobileMenu').removeClass('show');
+    });
+    $('.dropClick i').click(function(){
+        $(this).parents('.mobileNavlistLink').children('.mobileDropDown').slideToggle();
+    });
+    $('.navlistLink').on('click', function() {
+        const $dropdown = $(this).find('.dropdown');
+        $('.dropdown').not($dropdown).hide(); // Hide other open dropdowns
+        $dropdown.toggle(); // Toggle the clicked dropdown
+    });
+});

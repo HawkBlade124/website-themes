@@ -13,7 +13,8 @@
     --background-color: #1e1e1e;
 		--headColor2:#AABF5E;
     --header-color:#353c1c;
-		--button: linear-gradient(354deg, rgba(170, 191, 94, 1) 0%, rgba(87, 199, 133, 1) 100%);
+		--button: #008C3A;
+		--button-dark: #00491E;
 	  --button-hover: linear-gradient(180deg, rgba(170, 191, 94, 1) 0%, rgba(87, 199, 133, 1) 100%);
 		--border:#AABF5E;
 }
@@ -22,11 +23,9 @@
 }
 html, body{
     font-family: "Nunito Sans", sans-serif!important;
-    background-color: var(--background-color)!important;;
+    background-color: var(--background-color)!important;
 }
-.box-sizing-content{
-	box-sizing: content-box;
-}
+
 a{
 	text-decoration: none;
   color:#fff!important;
@@ -55,9 +54,12 @@ address a{
 	color:#fff;
 	text-decoration: none;
 }
+h2{
+	color:var(--white-color)!important;
+}
 h3{
-	font-size: 27px;
-	margin-bottom:15px;
+	font-size: 27px!important;
+	margin-bottom:15px!important;
 	color:#fff!important;	
 }
 p, img[alt]{
@@ -65,8 +67,14 @@ p, img[alt]{
 	font-size:19px;
 	color:#fff;
 }
+img{
+	width:100%;
+}
+label{
+	color:#fff;
+	margin:15px 0 0 0;
+}
 header {
-    padding: 15px;
     box-sizing: border-box;
     background-color: #AABF5E;
 }
@@ -74,11 +82,18 @@ header a{
 	color:var(--white-color);
 	text-decoration: none;
 }
+#headerAddress{
+	margin-left:15px;
+}
 .logo{
+	width:100%;
 	max-width:300px;
+	box-sizing: border-box;
 }
 .logo img{
+	width:100%;
 	max-width:350px;
+	box-sizing: border-box;
 }
 #aboutWrapper .innerWrapper .aboutContent{
 	background:#f0f0f0;
@@ -86,10 +101,50 @@ header a{
 	max-width:910px;
 	font-size:19px;
 }
+.navbar{
+	padding: 0!important;
+}
 #navlist{
-	gap:35px;
 	list-style-type: none;   
 	margin-bottom:0;
+	padding-left:0;	
+}
+.navlistLink{
+	padding:40px 25px;
+}
+.navlistLink a {
+	padding:10px 20px;
+	border-radius: 10px;
+	transition:0.2s ease-in;
+}
+#navlist li a:hover{
+	background:#353c1c;
+	transition:0.2s ease-in;
+}
+#navlist li:hover > .dropdown{
+	display: flex;
+	flex-direction: column
+}
+.dropdown{
+	display:none;
+	position: absolute!important;
+	background:#353c1c;
+	width: 100%;
+	max-width: 250px;
+	list-style-type: none;	
+	padding-left:0;
+	top:104px;
+}
+.dropdown li{
+	padding:0!important;
+}
+.dropdown li a{
+	display:block;
+	padding:10px;
+	border-radius: 0;
+}
+.dropdown li a:hover{
+	background:#AABF5E!important;
 }
 .iconSection{
 	margin-left:25px;
@@ -103,18 +158,25 @@ header a{
 	color:#fff;	
 }
 .hero {
-	position: relative;
+	background:url('/images/hamburger-main-photo.jpg') center center no-repeat ;
+	background-size:cover;
+	height:100%;
+	max-height: 850px;
 }
-.heroContent {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-70%, -50%);
+.heroContent {	
   z-index: 1; /* ensures it stays above other content if needed */
 	width:100%;
-	max-width: 1250px;
+
+	margin:0 auto;
 	padding:10px;
 	box-sizing: border-box;
+	display:flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height:100%;
+	text-align: center;
+	background:rgb(0,0,0,0.2);
 }
 .heroContent h1{
 	color:#fff;
@@ -124,18 +186,35 @@ header a{
 	color:#fff;
 }
 .heroContent button{
-	padding:8px 20px;
-	font-size:15px;
+	padding:10px 55px;
+	font-size:25px;
   background: #AABF5E;
   background: var(--button);
 	border:none;
 	border-radius: 5px;
 	margin-top:15px;
 	cursor: pointer;
+	color:#fff;
 }
-.heroContent button:hover{
+.bookTableButton, .ctaButton{
+	padding:8px 20px;
+	font-size:21px;
+  background: var(--button);
+	border:none;
+	border-radius: 5px;
+	margin-top:15px;
+	cursor: pointer;
+	text-decoration: none
+}
+.heroContent button:hover, .bookTableButton:hover, .bookTableButton.drk:hover, .ctaButton:hover{
 	background: #AABF5E;
 	background: var(--button-hover);
+}
+.bookTableButton{
+	background: #008C3A
+}
+.bookTableButton.drk{
+		background: #00491E;
 }
 .bodyContainer {
 	display:grid;
@@ -157,15 +236,12 @@ section:nth-child(odd){
 	display: block;
 	width: 100%;
 	height: 240px; /* adjust as needed */
-	/* background-image: url('../../images/dividers/border-divider.svg');	 */
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
 }
-.divider{
-}
-#aboutUs{
-		background-color:#0378A6;
+#servicesRight{
+	gap:25px;
 }
 .wrapperHead{
 	text-transform: capitalize;
@@ -179,15 +255,19 @@ section:nth-child(odd){
 .cardContainer{
 	gap: 20px;
 	justify-items:center;
+	width:100%;
 }
-.cardContainer .card{
-	background-color:transparent;
-	max-width:450px;
-	border:1px solid var(--border);
-	padding:20px;
-	align-items: flex-end;
+.cardContainer .card {
+    background-color: transparent;
+    max-width: 450px;
+    width: 100%; /* Allow cards to take full available width */
+    border: 1px solid var(--border);
+    padding: 20px;
+    align-items: flex-end;
+    box-sizing: border-box; /* Ensure padding/border included in width */
 }
 .cardContent{
+	width:100%;
 	height:250px;
 }
 .cardContent h3{
@@ -211,7 +291,7 @@ section:nth-child(odd){
 	padding-top:65px;
 }
 .foodImage{
-	max-width:250px;
+	max-width:300px;
 	border-radius: 15px;
 }
 .menuItem{
@@ -221,9 +301,12 @@ section:nth-child(odd){
 	border-radius: 15px;
 	transition:0.2s ease;	
 }
+.menuItem.active{
+	background-color: #404040;
+}
 .menuItem:hover{
 	background-color:#404040;
-	transition:0.2s ease;
+	transition:0.2s ease-in-out;
 }
 .menuItem h3{
 	font-size:2rem;
@@ -235,9 +318,21 @@ section:nth-child(odd){
 }
 .innerMenuWrapper{
 	display: none;
+	gap: 30px;
+}
+.innerMenuWrapperHead{
+	width:100%;
+	gap:40px;
+}
+.innerMenuWrapperHead h3{
+	font-size:65px!important;
+}
+.whiteLine{
+	height:2px;
+	background-color:#fff;
+	width:100%;
 }
 .menuPopup.active{	
-	border-top:1px solid #fff;
 	padding:60px 0;
 }
 .menuPopup.active .innerMenuWrapper{
@@ -245,6 +340,10 @@ section:nth-child(odd){
 }
 .innerMenuWrapper ul{
 	color:#fff;
+	padding-left:0;
+	line-height: 2;
+	margin-bottom: 0;
+	font-size: 25px;
 }
 .triangleDivider:before{
 	content:"\f2ec";
@@ -256,13 +355,31 @@ section:nth-child(odd){
 	justify-content: center;	
 	width: 100%;
 }
+.findUsHours{
+	border-top:1px solid #fff;
+	padding-top:10px;
+}
+.findUsLeft ul, .findUsLeft h5{
+	color:#fff;
+}
+.findUsRight{
+	width:100%;
+	max-width: 900px;
+}
+.cardWrapper{
+	padding:10px;
+	width:100%;
+}
+.cardWrapper img{
+	width:100%;
+}
 footer{
 	background:var(--secondary-color);	
 	box-shadow: inset 0px 2px 12px rgb(0,0,0,0.2);
 	color:#fff;
 }
 #topFooter{
-	border-bottom:2px solid #000;
+	border-bottom:3px solid #fff;
 	padding-bottom:25px;
 }
 #footerWrap{
@@ -273,22 +390,34 @@ footer{
 }
 #footerWrap ul{
 	list-style-type: none;	
-	gap:25px;
+	gap:15px;
 	padding-left:0;
-	margin:0;
+	margin:0;	
 }
-#footerWrap ul li a{
-	color:#000;	
+#footerWrap ul li a{	
 	text-decoration:none;
+	font-size:23px;
 }
 #footerWrap ul li a:hover{
 	text-decoration: underline;
 }
 #footSocialMedia{
-	font-size: 21px;
+	font-size: 20px;	
+	padding:25px 0;
+	gap:35px!important;
+}
+#footSocialMedia li a{
+	display:flex;
+	justify-content: center;
+	padding: 10px 15px;
+	border-radius: 25px 25px;
+	background: #aabf5e;	
+	text-decoration: none!important;
 }
 #footSocialMedia a:hover{
+	background: #91b803;		
 	color:#494949;
+
 }
 .bottomFootRight{
 	text-align: center;
@@ -306,10 +435,75 @@ footer{
 #mobileMenu{
 	display:none!important;
 }
-#hamburgerWrapper{
+#hamburgerWrapperMobile{
 	display:none!important;
 }
-@media screen and (max-width:950px){
+#bookATable{
+	gap:20px;
+}
+#servicesImage img{
+	border-radius:15px;
+}
+#menuWrapperMobile{
+	display:none;
+}
+.aboutContent{
+	gap:50px;
+}
+.aboutLeft, .aboutRight{
+	max-width:750px;
+}
+.aboutContent img{
+	width: 100%
+}
+.footerLogo img{
+	width:100%;
+}
+
+.carousel-indicators{
+	position: static!important;
+	margin-top:35px;
+}
+#testimonialCarousel{
+	display:flex;
+	flex-direction: column;
+	align-items: center;
+}
+.carousel-control-next, .carousel-control-prev{
+	display: flex;
+	align-items: center
+}
+.carousel-item p{
+	margin:35px 0		
+}
+@media screen and (max-width:1210px){
+	.navlistLink{
+		padding-right:0;
+	}
+}
+@media screen and (max-width:1050px){
+	.navlistLink a{
+		padding-right:0;
+	}
+	header{
+		padding:0 20px;
+	}
+}
+@media screen and (max-width:970px){
+	header{
+		padding:50px 2%;;
+	}
+	#servicesRight{
+		justify-content: center;
+		text-align: center;
+		width: 100%;
+		gap: 35px;
+		margin-top:35px;
+	}
+	#serviceContainer{		
+		justify-content: center!important;
+		width: 100%;
+	}
 	#hamburgerWrapperMobile{
 		display:block!important;
 	}
@@ -332,7 +526,235 @@ footer{
 		position: absolute;
 		z-index: 9;
 		right:0;
-		background-color:#AABF5E;
-		height:100vh	
+		height:100vh;
+		width:100%;		
+	}
+	#overlay{
+		background:rgba(0,0,0,0.5);
+		height:100vh;
+		width: 100%;
+	}
+	#mobileMenu.show #mobileMenuRight{
+		justify-content: space-between;
+		width:100%;
+		max-width:405.4px;		
+		background-color:#AABF5E;		
+		padding:15px;
+		position: fixed;
+		right:0;		
+		height:100%;		
+	}
+	.closeMobileMenu{
+		font-size:25px;
+		color:#fff;
+	}
+	#bottomMenu{
+		border-top:1px solid #fff;
+		padding-top:20px;
+	}
+	.socialMedia{
+		margin-left:15px;
+	}
+	#servicesImage img{
+		width:100%;
+	}
+	#menuWrapperMobile{
+		display:flex;
+		flex-direction: column;
+	}
+	#menuWrapper{
+		display: none;
+	}
+	.menuPopup{
+		display: flex;
+		justify-content: center;
+		width: 100%;
+	}
+	.mobile.menuPopup{
+		flex-direction: column;
+		align-items: center;
+	}
+	.mobile.innerMenuWrapper.active{
+		display:flex;
+	}
+	.aboutLeft, .aboutRight{
+		text-align: center;
+	}
+
+	.aboutContent.ourStory{
+		flex-direction: column-reverse;
+		align-items: center;
+		margin-top:25px;
+	}
+	.aboutContent.ourMission{
+		flex-direction: column;
+	}
+	.aboutLeft.text{
+		margin-top:25px;
+	}
+	.cardContainer{
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+	.findUsContent{
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 25px;
+	}
+	#topFooter{
+		flex-direction: column;
+		gap:25px;
+	}
+	.footerColumn{
+		width: 100%;
+		max-width:450px;
+		text-align: center;
+	}
+	#footSocialMedia{
+		justify-content: center;
+	}
+	#mobileNavlist{
+		padding-left:0;
+		list-style-type: none;
+		width:100%;
+	}
+	.dropClick{
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		width: 100%;
+			
+	}
+	#mobileNavlist li{
+		padding:20px;
+		width:100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		color:#fff;
+	}
+	#mobileNavlist li a{
+		text-decoration: none;
+	}
+	.mobileMenuHeader{
+		flex-direction: column-reverse;
+	}
+	#closeMobileMenu{
+		width:100%;
+		font-size:20px;
+	}
+	#closeMobileMenu i{
+		font-size:29px;
+	}
+	.mobileDropDown{
+		display:none;
+		background:#353c1c;
+		padding-left:0;
+		margin-top:30px;
+	}
+	.innerMobileNavLink{
+		display: flex;
+		justify-content: space-between;
+	}
+}
+@media screen and (max-width:800px){
+	#topHeader .wrapperWidth{
+		flex-direction: column-reverse;
+		gap: 20px;
+	}
+	#rightSmallHead .socialMedia{
+		margin-left:15px;
+	}
+	#rightSmallHead{
+		display:none!important;
+	}
+	#mainHomeMenu .menuItem {
+		display: flex;
+		flex-direction: column;		
+		justify-content: center;		
+		width: 100%;		
+	}
+	.menuItem .foodImage{		
+		margin:0 auto;
+		max-width: 450px;
+	}
+	.cardContainer{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
+	#topFooter, #servicesRight{
+		flex-direction: column;
+		text-align: center;
+		gap:40px;
+	}
+	#servicesRight{
+		margin-top:40px;
+	}
+	#testimonialWrapper{
+		text-align: center;
+	}
+	.mobileMenuHeader{
+		justify-content: space-around;
+	}
+	#navlist li{
+		line-height: 1.5
+	}
+}
+@media screen and (max-width:550px){
+	#navlist{
+		width:100%;
+	}
+	#navlist li{
+		text-align: center;
+		width:100%;
+	}
+}
+@media screen and (max-width: 500px) {
+    .cardContainer {
+        flex-direction: column; /* Ensure vertical stacking */
+        align-items: center; /* Center cards */
+        justify-content: center;
+        width: 100%; /* Full width */
+        gap: 15px; /* Reduce gap for smaller screens */
+    }
+
+    .cardContainer .card {
+        max-width: 100%; /* Cards take full container width */
+        padding: 15px; /* Reduce padding for smaller screens */
+    }
+
+    #cardButton {
+        padding-top: 30px; /* Adjust spacing */
+    }
+	.cardWrapper{
+		width:100%;
+		padding:20px;	
+	}
+	.cardWrapper img{
+		width:100%;
+	}
+}
+@media screen and (max-width:470px){	
+	#rightSmallHead address{
+		flex-direction: column;
+		gap:20px;
+	}
+	.findUsHours{
+		padding-top:65px;
+	}
+	.findUsHours ul{
+		display:flex;
+		flex-direction: column;
+		list-style-type: none;
+		padding-left:0;
+		gap:10px;
+		margin-bottom:55px;		
+	}
+	.carousel-control-next-icon, .carousel-control-prev-icon{
+		display:none!important;
 	}
 }
